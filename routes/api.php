@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,21 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-// RESOURCE_ROUTE
-Route::resource('/products', ProductController::class);
-// SEARCH_ROUTE
-Route::get('/products/search/{name}', [ProductController::class, 'search']);
+// GENERAL ROUTES
+Route::get('/products', [ProductController::class, 'index']);
+Route::post('/signup', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// PROTECTED ROUTES
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart/{id}', [CartController::class, 'store']);
+});
+
+// PROTECTED ROUTES OF ADMIN
+Route::group(['middleware' => ['admin', 'auth:sanctum']], function () {
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::put('/product/{id}', [ProductController::class, 'update']);
+    Route::delete('/product/{id}', [ProductController::class, 'destroy']);
 });

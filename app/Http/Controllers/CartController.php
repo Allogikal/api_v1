@@ -1,20 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Cart;
+
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class ProductController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Product::all();
 
+        return Cart::all();
     }
 
     /**
@@ -30,16 +34,26 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required'
+        $user = \auth()->id();
+        $product_id = Product::findOrFail($id)->id;
+
+        $cart = Cart::create([
+            'user_id' => $user,
+            'product_id' => $product_id,
         ]);
-        return Product::create($request->all());
+
+        $price = DB::table('carts')
+            ->sum('price')->get();
+
+        $response = [
+            'cart' => $cart,
+            'price' => $price
+        ];
+        return response($response, 201);
     }
 
     /**
@@ -50,7 +64,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
+        //
     }
 
     /**
@@ -73,11 +87,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->update($request->all());
-        return response([
-            'updated' => $product
-        ], 201);
+        //
     }
 
     /**
@@ -88,7 +98,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return Product::destroy($id);
+        //
     }
-
 }
