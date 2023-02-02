@@ -17,8 +17,16 @@ class CartController extends Controller
      */
     public function index()
     {
+        $user = \auth()->id();
+        $cart = Cart::where(['user_id' => $user])->get();
+        $sum_quantities = Cart::where(['user_id' => $user])->sum('quantity');
+        $sum_price = Cart::where(['user_id' => $user])->sum('price_product');
 
-        return Cart::all();
+        return response([
+           'cart' => $cart,
+           'sum_quantities' => $sum_quantities,
+            'sum_price' => $sum_price
+        ]);
     }
 
     /**
@@ -39,19 +47,22 @@ class CartController extends Controller
     public function store($id)
     {
         $user = \auth()->id();
-        $product_id = Product::findOrFail($id)->id;
-
-        $cart = Cart::create([
-            'user_id' => $user,
-            'product_id' => $product_id,
-        ]);
-
-        $price = DB::table('carts')
-            ->sum('price')->get();
+        $product = Product::findOrFail($id);
+        if ($cart = Cart::where(['user_id' => $user,'product_id' => $product->id])->first()) {
+            $cart->quantity++;
+            $cart->save();
+        }
+        else {
+            $cart = Cart::create([
+                "user_id" => $user,
+                "product_id" => $product->id,
+                "price_product" => $product->price,
+                "quantity" => 1,
+            ]);
+        }
 
         $response = [
             'cart' => $cart,
-            'price' => $price
         ];
         return response($response, 201);
     }
@@ -98,6 +109,9 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cart::destroy($id);
+        return response([
+            'message' => 'Deleted!'
+        ]);
     }
 }

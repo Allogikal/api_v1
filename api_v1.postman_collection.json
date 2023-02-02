@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "b29ea5ea-a1c9-43d8-a166-85e6fd186ca1",
-		"name": "Вариант 6",
+		"_postman_id": "eaec6a4f-8de7-4e16-98c5-fd7d50f6c05b",
+		"name": "api_v1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -22,12 +22,23 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"user@samohod.ru\",\r\n    \"password\":\"password\"\r\n}",
+							"raw": "{\r\n    \"email\":\"user12@samohod.ru\",\r\n    \"password\":\"useruser\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -35,11 +46,17 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/login",
+							"raw": "http://127.0.0.1:8000/api/login",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"login"
 							]
 						}
@@ -60,12 +77,23 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fio\":\"user\",\r\n    \"email\":\"user12@samohod.ru\",\r\n    \"password\":\"useruser\"\r\n}",
+							"raw": "{\r\n    \"fio\":\"user\",\r\n    \"email\":\"user12@samohod.ru\",\r\n    \"password\":\"useruser\",\r\n    \"password_confirmation\":\"useruser\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -73,11 +101,17 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/signup",
+							"raw": "http://127.0.0.1:8000/api/signup",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"signup"
 							]
 						}
@@ -86,15 +120,32 @@
 				},
 				{
 					"name": "Просмотр списка товаров",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "{{host}}/products",
+							"raw": "http://127.0.0.1:8000/api/products",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"products"
 							]
 						}
@@ -108,25 +159,42 @@
 			"item": [
 				{
 					"name": "Добавление товара в корзину",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "2|ABcOqfZJq4MbdTGQgWN9boeCLSWE2GXW73RRrK9F",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "{{host}}/cart/1",
+							"raw": "http://127.0.0.1:8000/api/cart/1",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"cart",
 								"1"
 							]
@@ -136,25 +204,42 @@
 				},
 				{
 					"name": "Просмотр своей корзины",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "2|ABcOqfZJq4MbdTGQgWN9boeCLSWE2GXW73RRrK9F",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "{{host}}/cart",
+							"raw": "http://127.0.0.1:8000/api/cart",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"cart"
 							]
 						}
@@ -163,27 +248,44 @@
 				},
 				{
 					"name": "Удаление товара из корзины",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "2|ABcOqfZJq4MbdTGQgWN9boeCLSWE2GXW73RRrK9F",
 									"type": "string"
 								}
 							]
 						},
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "{{host}}/cart/16",
+							"raw": "http://127.0.0.1:8000/api/cart/2",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"cart",
-								"16"
+								"2"
 							]
 						}
 					},
@@ -245,25 +347,54 @@
 				},
 				{
 					"name": "Выход",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().content.user_token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "{{host}}/logout",
+							"raw": "http://127.0.0.1:8000/api/logout",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"logout"
 							]
 						}
@@ -277,22 +408,33 @@
 			"item": [
 				{
 					"name": "Добавление нового товара",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "2|ABcOqfZJq4MbdTGQgWN9boeCLSWE2GXW73RRrK9F",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"name\": \"Product name NEW\",\r\n \"description\": \"Product description NEW\",\r\n \"price\": 300\r\n}\r\n",
+							"raw": "{\r\n \"name\": \"Product name Two\",\r\n \"description\": \"Product description NEW\",\r\n \"price\": 200\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -300,12 +442,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/product",
+							"raw": "http://127.0.0.1:8000/api/products",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
-								"product"
+								"api",
+								"products"
 							]
 						}
 					},
@@ -313,25 +461,42 @@
 				},
 				{
 					"name": "Удаление товара",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "2|MqUSJxbIfwFnCNbHycOSaSYnEWBpxsXVmLqYcxQw",
 									"type": "string"
 								}
 							]
 						},
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "{{host}}/product/1",
+							"raw": "http://127.0.0.1:8000/api/product/1",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"product",
 								"1"
 							]
@@ -341,22 +506,33 @@
 				},
 				{
 					"name": "Редактирование товара",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "2|MqUSJxbIfwFnCNbHycOSaSYnEWBpxsXVmLqYcxQw",
 									"type": "string"
 								}
 							]
 						},
-						"method": "PATCH",
-						"header": [],
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"price\": 1000\r\n}\r\n",
+							"raw": "{\r\n    \"name\":\"Product name Fifty\",\r\n    \"price\": 50\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -364,11 +540,17 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/product/2",
+							"raw": "http://127.0.0.1:8000/api/product/2",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"product",
 								"2"
 							]

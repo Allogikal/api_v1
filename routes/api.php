@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/cart', [CartController::class, 'index']);
     Route::post('/cart/{id}', [CartController::class, 'store']);
+    Route::delete('/cart/{id}', [CartController::class, 'destroy']);
 });
 
 // PROTECTED ROUTES OF ADMIN
