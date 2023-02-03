@@ -20,7 +20,7 @@ class CartController extends Controller
         $user = \auth()->id();
         $cart = Cart::where(['user_id' => $user])->get();
         $sum_quantities = Cart::where(['user_id' => $user])->sum('quantity');
-        $sum_price = Cart::where(['user_id' => $user])->sum('price_product');
+        $sum_price = (Cart::where(['user_id' => $user])->sum('price_product')) * Cart::where(['user_id' => $user])->first()->quantity;
 
         return response([
            'cart' => $cart,
