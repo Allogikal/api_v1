@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/cart', [CartController::class, 'index']);
     Route::post('/cart/{id}', [CartController::class, 'store']);
     Route::delete('/cart/{id}', [CartController::class, 'destroy']);
+    Route::post('/order', [OrderController::class, 'store']);
+    Route::get('/order', [OrderController::class, 'index']);
 });
 
 // PROTECTED ROUTES OF ADMIN

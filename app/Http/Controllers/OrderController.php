@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Cart;
-
-use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
-class CartController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,17 +16,17 @@ class CartController extends Controller
     public function index()
     {
         $user = \auth()->id();
-        $cart = Cart::where(['user_id' => $user])->get();
-        $sum_quantities = Cart::where(['user_id' => $user])->sum('quantity');
+        $order = Order::where(['user_id' => $user])->get();
+        $sum_quantities = Order::where(['user_id' => $user])->sum('quantity');
         $sum_price = 0;
-        foreach ($cart as $item) {
+        foreach ($order as $item) {
             $sum_price += $item['price_product'] * $item['quantity'];
         }
 
         return response([
-           'cart' => $cart,
-           'sum_quantities' => $sum_quantities,
-            'sum_price' => $sum_price
+            'order' => $order,
+            'order_sum_quantities' => $sum_quantities,
+            'order_sum_price' => $sum_price
         ]);
     }
 
@@ -45,28 +43,26 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store()
     {
         $user = \auth()->id();
-        $product = Product::findOrFail($id);
-        if ($cart = Cart::where(['user_id' => $user,'product_id' => $product->id])->first()) {
-            $cart->quantity++;
-            $cart->save();
-        }
-        else {
-            $cart = Cart::create([
-                "user_id" => $user,
-                "product_id" => $product->id,
-                "price_product" => $product->price,
-                "quantity" => 1,
-            ]);
-        }
+        $cart = Cart::where(['user_id' => $user])->first();
+        $order = Order::create([
+            "user_id" => $user,
+            "product_id" => $cart->product_id,
+            "price_product" => $cart->price_product,
+            "quantity" => $cart->quantity,
+        ]);
 
         $response = [
-            'cart' => $cart,
+            'id_order' => $order->id,
+            'order' => $order
         ];
+
+        Cart::destroy($user);
+
         return response($response, 201);
     }
 
@@ -112,9 +108,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        Cart::destroy($id);
-        return response([
-            'message' => 'Deleted!'
-        ]);
+        //
     }
 }

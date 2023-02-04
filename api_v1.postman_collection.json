@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "eaec6a4f-8de7-4e16-98c5-fd7d50f6c05b",
+		"_postman_id": "4832fe11-04c2-4630-94e5-d3b5f2dd710b",
 		"name": "api_v1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -170,7 +170,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|ABcOqfZJq4MbdTGQgWN9boeCLSWE2GXW73RRrK9F",
+									"value": "2|bl882p8S1Gzm82UOgUfl4drvHh5mrBUfedxIU2z5",
 									"type": "string"
 								}
 							]
@@ -184,7 +184,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/cart/1",
+							"raw": "http://127.0.0.1:8000/api/cart/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -196,7 +196,7 @@
 							"path": [
 								"api",
 								"cart",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -215,7 +215,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|ABcOqfZJq4MbdTGQgWN9boeCLSWE2GXW73RRrK9F",
+									"value": "2|bl882p8S1Gzm82UOgUfl4drvHh5mrBUfedxIU2z5",
 									"type": "string"
 								}
 							]
@@ -293,25 +293,42 @@
 				},
 				{
 					"name": "Оформление заказа",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "2|bl882p8S1Gzm82UOgUfl4drvHh5mrBUfedxIU2z5",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "{{host}}/order",
+							"raw": "http://127.0.0.1:8000/api/order",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"order"
 							]
 						}
@@ -320,25 +337,42 @@
 				},
 				{
 					"name": "Просмотр своих оформленных заказов",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "2|bl882p8S1Gzm82UOgUfl4drvHh5mrBUfedxIU2z5",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "{{host}}/order",
+							"raw": "http://127.0.0.1:8000/api/order",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "8000",
 							"path": [
+								"api",
 								"order"
 							]
 						}
@@ -419,7 +453,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|ABcOqfZJq4MbdTGQgWN9boeCLSWE2GXW73RRrK9F",
+									"value": "2|bl882p8S1Gzm82UOgUfl4drvHh5mrBUfedxIU2z5",
 									"type": "string"
 								}
 							]
@@ -434,7 +468,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"name\": \"Product name Two\",\r\n \"description\": \"Product description NEW\",\r\n \"price\": 200\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"Product name One\",\r\n  \"description\": \"Desc Threee\",\r\n  \"price\": 500\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -517,7 +551,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|MqUSJxbIfwFnCNbHycOSaSYnEWBpxsXVmLqYcxQw",
+									"value": "2|AAiY44xrT6mrPb3RIGHPbuFBocO6KkOVqSd1YZo2",
 									"type": "string"
 								}
 							]
@@ -540,7 +574,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/product/2",
+							"raw": "http://127.0.0.1:8000/api/product/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -552,7 +586,7 @@
 							"path": [
 								"api",
 								"product",
-								"2"
+								"1"
 							]
 						}
 					},
